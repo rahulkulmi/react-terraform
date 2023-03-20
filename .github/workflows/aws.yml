@@ -35,7 +35,7 @@ jobs:
           node-version: 14
           cache: 'npm'
       - run: npm ci
-      - run: npm run build
+      - run: npm run build:development
       # - run: npm test
 
       # - uses: jakejarvis/s3-sync-action@master
