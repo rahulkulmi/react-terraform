@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  AWS_S3_BUCKET: test-bucket
+  AWS_S3_BUCKET: newput-react-test
 
 permissions:
   contents: read
@@ -38,9 +38,6 @@ jobs:
         with:
           node-version: 14
           cache: 'npm'
-      # - run: npm ci
-      # - run: npm run build:development
-      # - run: npm test
 
       - name: Install Node Module
         run: npm ci
@@ -66,5 +63,5 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      # - name: Deploy app build to S3 bucket
-      #   run: aws s3 sync ./build/ s3://${{ env.AWS_S3_BUCKET }} --delete
+      - name: Deploy app build to S3 bucket
+        run: aws s3 sync ./build/ s3://${{ env.AWS_S3_BUCKET }} --delete

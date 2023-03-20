@@ -1,6 +1,6 @@
 # Specify the provider and access details
 terraform {
-  required_version = "~> 1.0"
+  required_version = ">= 1.3.9"
 
   required_providers {
     aws = {
