@@ -1,6 +1,6 @@
 resource "aws_route53_zone" "main" {
   name    = var.domain_name
-  comment = "Managed by Terraform"
+  comment = "${var.app_name}-${var.stage}"
 
   # tags {
   #   Environment = "production"
