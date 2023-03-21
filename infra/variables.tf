@@ -25,53 +25,65 @@ variable "stage" {
   default = "dev"
 }
 
-# variable "ecs_task_execution_role_name" {
-#   description = "ECS task execution role name"
-#   default = "myEcsTaskExecutionRole"
-# }
-
-variable "az_count" {
-  description = "Number of AZs to cover in a given region"
-  default     = "2"
-}
-
-variable "app_port" {
-  description = "Port exposed by the docker image to redirect traffic to"
-  default     = 8080
-}
-
-variable "app_count" {
-  description = "Number of docker containers to run"
-  default     = 1
-}
-
 variable "app_name" {
   type        = string
   description = "The application name"
-  default     = "node-terraform"
+  default     = "react-terraform"
+}
+
+### Tag variables
+variable "repo" {
+  default = "react-terraform"
+}
+
+variable "project" {
+  default = "Newput"
+}
+
+variable "app_version" {
+  type        = string
+  default     = null
+  description = "Version of the application"
 }
 
 variable "health_check_path" {
   default = "/"
 }
 
-variable "env_vars" {
-  type        = map(string)
-  default     = {}
-  description = "Map of environment vars to make is easier to pass"
+variable "bucket_name" {
+  type        = string
+  description = "The name of the bucket without the www. prefix. Normally domain_name."
+  default     = "newput-react-web-dev"
 }
 
-variable "secret_arns" {
+variable "additional_tags" {
   type        = map(string)
   default     = {}
-  description = "Map of secrets to use in the template"
+  description = "Non-default tags to apply to resources"
 }
+
+variable "domain_name" {
+  # type        = list(string)
+  type        = string
+  description = "The domain name for the website."
+  default     = "dev.newput.click"
+  # default = [
+  #   "dev.newput.click"
+  # ]
+}
+
+variable "certificate_name" {
+  default = "*.newput.click"
+}
+
+variable "hosted_zone_name" {
+  default = "newput.click."
+}
+
 
 # variable "aws_access_key" {}
 # variable "aws_secret_key" {}
 # variable "aws_region" {}
-
-variable "domain_name" {}
-
-variable "website_bucket_name" {}
-variable "website_zone_id" {}
+# variable "domain_name" {}
+# variable "website_bucket_name" {}
+# variable "website_zone_id" {}

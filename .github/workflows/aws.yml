@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  AWS_S3_BUCKET: newput-react-test
+  AWS_S3_BUCKET: newput-react-web-dev
 
 permissions:
   contents: read
@@ -44,7 +44,7 @@ jobs:
         # run: npm install && npm run build
 
       - name: Build React App
-        run: npm run build:production
+        run: npm run build:development
 
       # - uses: jakejarvis/s3-sync-action@master
       #   with:
