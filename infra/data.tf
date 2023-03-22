@@ -4,7 +4,7 @@ data "aws_acm_certificate" "ssl_cert" {
   statuses    = ["ISSUED"]
 }
 
-# data "aws_route53_zone" "np" {
-#   provider = aws.dns
-#   name     = var.hosted_zone_name
-# }
+data "aws_route53_zone" "main" {
+  # provider = aws.dns
+  name = var.hosted_zone_name
+}

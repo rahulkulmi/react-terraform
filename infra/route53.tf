@@ -1,15 +1,5 @@
-resource "aws_route53_zone" "main" {
-  name    = var.domain_name
-  comment = "${var.app_name}-${var.stage}"
-
-  # tags {
-  #   Environment = "production"
-  # }
-  tags = var.additional_tags
-}
-
 resource "aws_route53_record" "main-a-record" {
-  zone_id = aws_route53_zone.main.zone_id
+  zone_id = data.aws_route53_zone.main.zone_id
   name    = var.domain_name
   type    = "A"
 
@@ -27,4 +17,3 @@ resource "aws_route53_record" "main-a-record" {
 #   ttl     = "300"
 #   records = ["${var.domain_name}"]
 # }
-

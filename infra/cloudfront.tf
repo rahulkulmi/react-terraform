@@ -14,9 +14,9 @@ resource "aws_cloudfront_origin_access_identity" "this" {
 
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
-    domain_name              = "${aws_s3_bucket.website.bucket}.s3.amazonaws.com"
+    domain_name = "${aws_s3_bucket.website.bucket}.s3.amazonaws.com"
+    origin_id   = var.bucket_name
     # origin_access_control_id = aws_cloudfront_origin_access_control.this.id
-    origin_id                = "${var.bucket_name}"
 
     s3_origin_config {
       origin_access_identity = aws_cloudfront_origin_access_identity.this.cloudfront_access_identity_path
@@ -33,7 +33,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "${var.bucket_name}"
+    target_origin_id = var.bucket_name
 
     forwarded_values {
       query_string = true
