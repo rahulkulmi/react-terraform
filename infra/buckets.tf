@@ -60,11 +60,11 @@ resource "aws_s3_bucket" "website" {
 }
 
 # AWS S3 bucket for www-redirect
-resource "aws_s3_bucket" "website_redirect" {
-  bucket = "www.${var.bucket_name}"
-  acl    = "public-read"
+# resource "aws_s3_bucket" "website_redirect" {
+#   bucket = "www.${var.bucket_name}"
+#   acl    = "public-read"
 
-  website {
-    redirect_all_requests_to = var.bucket_name
-  }
-}
+#   website {
+#     redirect_all_requests_to = var.bucket_name
+#   }
+# }
