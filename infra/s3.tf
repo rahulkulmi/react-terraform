@@ -71,11 +71,11 @@
 
 
 resource "aws_s3_bucket" "website" {
-  bucket              = var.bucket_name
-  acl                 = "public-read" # "private"
+  bucket = var.bucket_name
+  acl    = "public-read" # "private"
   # acceleration_status = "Enabled"
-  force_destroy       = true
-  tags                = var.additional_tags
+  force_destroy = true
+  tags          = var.additional_tags
 }
 
 resource "aws_s3_bucket_website_configuration" "website-config" {
