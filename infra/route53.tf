@@ -9,11 +9,3 @@ resource "aws_route53_record" "main-a-record" {
     evaluate_target_health = false
   }
 }
-
-# resource "aws_route53_record" "main-c-name" {
-#   zone_id = aws_route53_zone.main.zone_id
-#   name    = "www"
-#   type    = "CNAME"
-#   ttl     = "300"
-#   records = ["${var.domain_name}"]
-# }
