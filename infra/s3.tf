@@ -71,7 +71,7 @@
 
 
 resource "aws_s3_bucket" "website" {
-  bucket = var.bucket_name
+  bucket              = var.bucket_name
   acl                 = "private"
   acceleration_status = "Enabled"
   force_destroy       = true
