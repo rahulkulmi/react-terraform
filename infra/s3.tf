@@ -71,9 +71,8 @@
 
 
 resource "aws_s3_bucket" "website" {
-  bucket = var.bucket_name
-  acl    = "public-read" # "private"
-  # acceleration_status = "Enabled"
+  bucket        = var.bucket_name
+  acl           = "public-read" # "private"
   force_destroy = true
   tags          = var.additional_tags
 }
@@ -87,6 +86,5 @@ resource "aws_s3_bucket_website_configuration" "website-config" {
 
 resource "aws_s3_bucket_policy" "website-policy" {
   bucket = aws_s3_bucket.website.id
-  # policy = templatefile("templates/s3-policy.json", { bucket = var.bucket_name })
   policy = data.aws_iam_policy_document.this.json
 }
