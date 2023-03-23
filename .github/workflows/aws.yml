@@ -134,6 +134,9 @@ jobs:
           name: development-artifact
           path: ./build
 
+      - name: Check path name
+        run: |
+          $pwd
       - name: Deploy app build to S3 bucket
         working-directory: ./../
         run: aws s3 sync ./build/ s3://${{ env.AWS_S3_BUCKET_DEV }} --delete
