@@ -138,11 +138,6 @@ jobs:
           name: development-artifact
           path: ./build
 
-      - name: Check path name
-        working-directory: build
-        run: |
-          $pwd
-
       - name: Deploy app build to S3 bucket
         run: aws s3 sync ./build/ s3://${{ env.AWS_S3_BUCKET_DEV }} --delete
 
@@ -210,15 +205,22 @@ jobs:
       - name: Build React App
         run: npm run build:production
 
+      - name: Upload Production Build Files
+        uses: actions/upload-artifact@v3
+        with:
+          name: production-artifact
+          path: ./build
+          retention-days: 2
+
   DeployPROD:
     name: Deploy on PROD
     needs: [PRODBuild]
     runs-on: ubuntu-latest
     environment:
       name: Production
-    defaults:
-      run:
-        working-directory: infra/
+    # defaults:
+    #   run:
+    #     working-directory: infra/
 
     steps:
       - name: Checkout
@@ -231,18 +233,22 @@ jobs:
 
       - name: Terraform Init
         id: init
+        working-directory: infra/
         run: terraform init -backend-config=vars/prod_backend.tfvars -backend-config=region=${{ secrets.AWS_REGION }} -backend-config=access_key=${{ secrets.AWS_ACCESS_KEY_ID }} -backend-config=secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Terraform Validate
         id: validate
+        working-directory: infra/
         run: terraform validate -no-color
 
       - name: Terraform Plan
         id: plan
+        working-directory: infra/
         run: terraform plan -var-file=vars/prod.tfvars -var=access_key=${{ secrets.AWS_ACCESS_KEY_ID }} -var=secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }} -out tfplan
 
       - name: Terraform Apply
         id: apply
+        working-directory: infra/
         run: terraform apply -auto-approve tfplan
 
       - name: Configure AWS Credentials
@@ -252,8 +258,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: development-artifact
+          path: ./build
+
       - name: Deploy app build to S3 bucket
-        working-directory: ./../
         run: aws s3 sync ./build/ s3://${{ env.AWS_S3_BUCKET_PROD }} --delete
 
   DestroyPROD:
