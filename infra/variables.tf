@@ -1,13 +1,13 @@
 variable "aws_region" {
   description = "The AWS region things are created in"
-  default     = "us-west-2" # "us-east-1" # 
+  default     = "us-west-2"
 }
 
-variable "aws_vpc_name" {
-  type        = string
-  description = "Add name for your VPC."
-  default     = "newput-dev"
-}
+# variable "aws_vpc_name" {
+#   type        = string
+#   description = "Add name for your VPC."
+#   default     = "newput-dev"
+# }
 
 # variable "dns_role" {
 #   default = "arn:aws:iam::708980201424:role/newput-dev-Route53FullAccess"

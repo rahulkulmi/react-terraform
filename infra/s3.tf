@@ -71,10 +71,15 @@
 
 
 resource "aws_s3_bucket" "website" {
-  bucket        = var.bucket_name
-  acl           = "public-read" # "private"
+  bucket = var.bucket_name
+  # acl           = "public-read"
   force_destroy = true
   tags          = var.additional_tags
+}
+
+resource "aws_s3_bucket_acl" "website_acl" {
+  bucket = aws_s3_bucket.website.id
+  acl    = "private"
 }
 
 resource "aws_s3_bucket_website_configuration" "website-config" {
