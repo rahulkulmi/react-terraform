@@ -49,11 +49,12 @@ jobs:
       - name: Build React App
         run: npm run build:development
 
-      - name: Upload Artifact
+      - name: Upload Development Build Files
         uses: actions/upload-artifact@v3
         with:
-          name: build-artifact
-          path: build
+          name: development-artifact
+          path: ./build
+          retention-days: 2
 
       # - name: Terraform Init
       #   id: init
@@ -130,8 +131,8 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v3
         with:
-          name: build-artifact
-          path: build
+          name: development-artifact
+          path: ./build
 
       - name: Deploy app build to S3 bucket
         run: aws s3 sync ./build/ s3://${{ env.AWS_S3_BUCKET_DEV }} --delete
@@ -149,11 +150,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: git info check
-        run: |
-          echo "github.sha"
-          echo ${{ github.sha }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
