@@ -20,6 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: Development
+    defaults:
+      run:
+        working-directory: frontend
 
     steps:
       - name: Checkout
@@ -48,6 +51,12 @@ jobs:
 
       - name: Build React App
         run: npm run build:development
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifact
+          path: build
 
       # - name: Terraform Init
       #   id: init
@@ -121,8 +130,14 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifact
+          path: build
+
       - name: Deploy app build to S3 bucket
-        run: aws s3 sync ./../build/ s3://${{ env.AWS_S3_BUCKET_DEV }} --delete
+        run: aws s3 sync ./frontend/build/ s3://${{ env.AWS_S3_BUCKET_DEV }} --delete
 
   DestroyDEV:
     name: Destroy on DEV
