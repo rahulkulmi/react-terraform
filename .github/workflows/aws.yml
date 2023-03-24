@@ -187,7 +187,7 @@ jobs:
     needs: [PRODBuild]
     runs-on: ubuntu-latest
     environment:
-      name: Production
+      name: Prod-Approver
     # defaults:
     #   run:
     #     working-directory: infra/
@@ -242,7 +242,7 @@ jobs:
     needs: [DeployPROD]
     runs-on: ubuntu-latest
     environment:
-      name: Production
+      name: Prod-Approver
     defaults:
       run:
         working-directory: infra/
