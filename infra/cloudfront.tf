@@ -26,6 +26,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 
   aliases = ["${var.domain_name}"]
 
+  price_class         = "PriceClass_100" # US/EU  edge locations only
   enabled             = true
   is_ipv6_enabled     = true
   comment             = "${var.app_name}-${var.stage}"
