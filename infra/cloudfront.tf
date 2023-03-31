@@ -37,10 +37,10 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     cached_methods         = ["GET", "HEAD"]
     target_origin_id       = local.s3OriginId # var.bucket_name
     viewer_protocol_policy = "redirect-to-https"
-    min_ttl                = 0
-    default_ttl            = 3600
-    max_ttl                = 86400
-    # compress               = true
+    compress               = true
+    # min_ttl                = 0
+    # default_ttl            = 3600
+    # max_ttl                = 86400
 
     forwarded_values {
       headers      = ["Origin", "Authorization", "Cache-Control", "Content-Type", "Expires"]
