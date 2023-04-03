@@ -37,5 +37,5 @@ data "aws_acm_certificate" "ssl_cert" {
 
 data "aws_route53_zone" "np" {
   # provider = aws.dns
-  name     = var.hosted_zone_name
+  name = var.hosted_zone_name
 }
