@@ -15,8 +15,15 @@ variable "secret_key" {
   description = "My AWS secret key"
 }
 
-variable "stage" {
-  default = "dev"
+## Tag variables
+variable "repo" {
+  type    = string
+  default = "react-terraform"
+}
+
+variable "project" {
+  type    = string
+  default = "Newput"
 }
 
 variable "app_name" {
@@ -25,24 +32,17 @@ variable "app_name" {
   default     = "react-terraform"
 }
 
-### Tag variables
-variable "repo" {
-  default = "react-terraform"
-}
-
-variable "project" {
-  default = "Newput"
-}
-
 variable "app_version" {
   type        = string
   default     = "Working on it"
   description = "Version of the application"
 }
 
-# variable "health_check_path" {
-#   default = "/"
-# }
+variable "stage" {
+  type    = string
+  default = "dev"
+}
+# End tag vars
 
 variable "bucket_name" {
   type        = string
@@ -50,20 +50,10 @@ variable "bucket_name" {
   default     = "newput-react-web-dev"
 }
 
-# variable "additional_tags" {
-#   type        = map(string)
-#   default     = {}
-#   description = "Non-default tags to apply to resources"
-# }
-
 variable "domain_name" {
-  # type        = list(string)
   type        = string
   description = "The domain name for the website."
   default     = "dev.newput.click"
-  # default = [
-  #   "dev.newput.click"
-  # ]
 }
 
 variable "certificate_name" {
@@ -73,10 +63,3 @@ variable "certificate_name" {
 variable "hosted_zone_name" {
   default = "newput.click."
 }
-
-# variable "aws_access_key" {}
-# variable "aws_secret_key" {}
-# variable "aws_region" {}
-# variable "domain_name" {}
-# variable "website_bucket_name" {}
-# variable "website_zone_id" {}
