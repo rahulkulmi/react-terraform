@@ -7,7 +7,7 @@
 #   signing_behavior                  = "always"
 #   signing_protocol                  = "sigv4"
 # }
-
+/*
 resource "aws_cloudfront_origin_access_identity" "this" {
   comment = "Origin Access Identity for origin: ${local.s3OriginId}"
 }
@@ -67,3 +67,4 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 
   tags = var.additional_tags
 }
+*/

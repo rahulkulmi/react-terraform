@@ -5,18 +5,7 @@ provider "aws" {
   secret_key = var.secret_key
 }
 
-data "aws_acm_certificate" "ssl_cert" {
-  domain      = var.certificate_name
-  most_recent = true
-  statuses    = ["ISSUED"]
-  provider    = aws.virginia
-}
-
-data "aws_route53_zone" "main" {
-  # provider = aws.dns
-  name = var.hosted_zone_name
-}
-
+/*
 data "aws_iam_policy_document" "this" {
   statement {
     actions = [
@@ -36,4 +25,17 @@ data "aws_iam_policy_document" "this" {
       ]
     }
   }
+}
+*/
+
+data "aws_acm_certificate" "ssl_cert" {
+  domain      = var.certificate_name
+  most_recent = true
+  statuses    = ["ISSUED"]
+  provider    = aws.virginia
+}
+
+data "aws_route53_zone" "np" {
+  # provider = aws.dns
+  name     = var.hosted_zone_name
 }

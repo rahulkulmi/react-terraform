@@ -1,13 +1,7 @@
-variable "aws_region" {
+variable "region" {
   description = "The AWS region things are created in"
   default     = "us-west-2"
 }
-
-# variable "aws_vpc_name" {
-#   type        = string
-#   description = "Add name for your VPC."
-#   default     = "newput-dev"
-# }
 
 # variable "dns_role" {
 #   default = "arn:aws:iam::708980201424:role/newput-dev-Route53FullAccess"
@@ -42,13 +36,13 @@ variable "project" {
 
 variable "app_version" {
   type        = string
-  default     = null
+  default     = "Working on it"
   description = "Version of the application"
 }
 
-variable "health_check_path" {
-  default = "/"
-}
+# variable "health_check_path" {
+#   default = "/"
+# }
 
 variable "bucket_name" {
   type        = string
@@ -56,11 +50,11 @@ variable "bucket_name" {
   default     = "newput-react-web-dev"
 }
 
-variable "additional_tags" {
-  type        = map(string)
-  default     = {}
-  description = "Non-default tags to apply to resources"
-}
+# variable "additional_tags" {
+#   type        = map(string)
+#   default     = {}
+#   description = "Non-default tags to apply to resources"
+# }
 
 variable "domain_name" {
   # type        = list(string)
@@ -79,7 +73,6 @@ variable "certificate_name" {
 variable "hosted_zone_name" {
   default = "newput.click."
 }
-
 
 # variable "aws_access_key" {}
 # variable "aws_secret_key" {}

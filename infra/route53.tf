@@ -1,3 +1,4 @@
+/*
 resource "aws_route53_record" "main-a-record" {
   zone_id = data.aws_route53_zone.main.zone_id
   name    = var.domain_name
@@ -9,3 +10,4 @@ resource "aws_route53_record" "main-a-record" {
     evaluate_target_health = false
   }
 }
+*/
