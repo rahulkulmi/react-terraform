@@ -1,6 +1,6 @@
 module "website" {
   # source = "git::https://github.com/rahulkulmi/terraform-aws-s3.git"
-  source = "git::https://github.com/rahulkulmi/terraform-aws-s3.git?ref=tags/v1.0.0"
+  source = "git::https://github.com/rahulkulmi/terraform-aws-s3.git?ref=tags/v1.0.1"
 
   app_name          = var.app_name
   app_version       = var.app_version
