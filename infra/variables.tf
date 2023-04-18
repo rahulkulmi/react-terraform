@@ -56,10 +56,25 @@ variable "domain_name" {
   default     = "dev.newput.click"
 }
 
+variable "record_name" {
+  type        = string
+  default     = "dev.app.codeuncode.in"
+  description = "Name of the DNS record"
+}
+
 variable "certificate_name" {
   default = "*.newput.click"
 }
 
 variable "hosted_zone_name" {
   default = "newput.click."
+}
+
+variable "custom_error_response" {
+  default = [{
+    error_caching_min_ttl = 0
+    error_code            = 404
+    response_code         = 200
+    response_page_path    = "/index.html"
+  }]
 }
